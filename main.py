@@ -6,7 +6,6 @@ from datetime import datetime
 
 from headers import get_json_xypher
 from headers_all import get_json_xypher_all
-from config import TOKEN, CHAT_ID
 from cmc_market import verify_cmc
 
 
