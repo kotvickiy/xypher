@@ -1,4 +1,6 @@
 /__pycache__/
 /venv/
+/env/
 /sacc.json
+/config.py
 /test.py

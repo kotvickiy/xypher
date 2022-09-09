@@ -1,4 +1,4 @@
-# Спред	Монета	Покупаем	за:	Продаём	за:
+#!/usr/bin/env python3
 import requests, time, gspread
 
 from datetime import datetime
