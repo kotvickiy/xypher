@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# pip install requests gspread
 import requests, time, gspread
 
 from datetime import datetime
