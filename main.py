@@ -79,16 +79,25 @@ def filling_table(lc, start_num, end_num):
                                                   [lc[7][0], lc[7][1], lc[7][2], lc[7][3], lc[7][4], lc[7][5]],
                                                   [lc[8][0], lc[8][1], lc[8][2], lc[8][3], lc[8][4], lc[8][5]],
                                                   [lc[9][0], lc[9][1], lc[9][2], lc[9][3], lc[9][4], lc[9][5]]])
-
+    
 
 def main():
     start = datetime.now()
+    sh = gspread.service_account(filename='./sacc.json').open("Test")
+    worksheet = sh.sheet1
+    worksheet.format("D1", {"backgroundColor": { "red": 1.0, "green": 0.8, "blue": 0.8}})
+    worksheet.update("D1", "О б н о в л е н и е ...")
     l_c = lst_coins(get_json_xypher())[:10]
     l_c_all = lst_coins(get_json_xypher_all())[:10]
     filling_table(l_c, 4, 13)
     filling_table(l_c_all, 20, 29)
+    worksheet.format("D1", {"backgroundColor": { "red": 0.8, "green": 1.0, "blue": 0.8}})
+    worksheet.update("D1", f"Обновлено в: {datetime.now().strftime('%H:%M:%S')}")
     print(f"[ + ] {datetime.now().strftime('%d-%m-%Y %H:%M:%S')} {datetime.now() - start}")
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as ex:
+        print(ex)
