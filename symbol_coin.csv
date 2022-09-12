@@ -11,7 +11,7 @@ DOT,polkadot-new
 DOGE,dogecoin
 MATIC,polygon
 SHIB,shiba-inu
-DAI,dai
+DAI,multi-collateral-dai
 AVAX,avalanche
 TRX,tron
 ETC,ethereum-classic
@@ -106,7 +106,7 @@ BAL,balancer
 CEL,celsius
 ROSE,oasis-network
 ENS,ethereum-name-service
-XDC,xdc-network
+XDC,xinfin
 KDA,kadena
 POLY,polymath
 TFUEL,theta-fuel
@@ -468,7 +468,7 @@ MOC,moss-coin
 H2O,h2o-dao
 ALEPH,aleph.im
 QI,benqi
-TVK,virtua
+TVK,terra-virtua-kolect
 BCD,bitcoin-diamond
 BMX,bitmart-token
 KOK,keystone-of-opportunity-knowledge
@@ -703,7 +703,7 @@ ACM,ac-milan-fan-token
 IHC,inflation-hedging-coin
 BASIC,basic
 OXEN,oxen
-GARI,gari-network
+GARI,gari
 BONE,bone-shibaswap
 DORA,dora-factory
 VINU,vita-inu
@@ -746,7 +746,7 @@ POSI,position-exchange
 SCP,scprime
 SLIM,solanium
 VTC,vertcoin
-CRPT,crypterium
+CRPT,crpt
 ALBT,allianceblock
 WHALE,whale
 ZNN,zenon

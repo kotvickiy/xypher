@@ -22,19 +22,16 @@ def get_json_xypher_all():
     data = [
     ('ExchangesFrom[]', 'BNC'),
     ('ExchangesFrom[]', 'KCN'),
-    ('ExchangesFrom[]', 'PLX'),
     ('ExchangesFrom[]', 'FTX'),
     ('ExchangesFrom[]', 'HBG'),
-    ('ExchangesFrom[]', 'BFX'),
     ('ExchangesTo[]', 'BNC'),
     ('ExchangesTo[]', 'KCN'),
-    ('ExchangesTo[]', 'PLX'),
     ('ExchangesTo[]', 'FTX'),
     ('ExchangesTo[]', 'HBG'),
-    ('ExchangesTo[]', 'BFX'),
     ('Pairs[]', 'USDT'),
     ('Top100', 'false'),
     ]
 
     response = requests.post('https://xypher.io/Remote/API/MVP/GetPairs/Master', headers=headers, data=data)
+
     return json.loads(response.text)

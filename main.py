@@ -4,9 +4,9 @@ import requests, time, gspread
 
 from datetime import datetime
 
-from headers import get_json_xypher
 from headers_all import get_json_xypher_all
 from cmc_market import verify_cmc
+from network import verify_network
 
 
 
@@ -58,27 +58,30 @@ def lst_coins(val):
                 max_B[4] = max_B[4].upper()
         spread_coin_exchange = [spread, i["CoinName"], f"{min_A[1]}{min_A[2]}{min_A[3]}{min_A[4]}", f"{min_A[0]}", f"{max_B[1]}{max_B[2]}{max_B[3]}{max_B[4]}", f"{max_B[0]}"]
         if verify_cmc(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0]):
-            coins.append(spread_coin_exchange)
+            vn = verify_network(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0])
+            if vn:
+                spread_coin_exchange.append(vn)
+                coins.append(spread_coin_exchange)
     coins.sort(key=lambda x: x[0], reverse=True)
     return coins
 
 
 def filling_table(lc, start_num, end_num):
-    extend = [[" ", " ", " ", " ", " ", " "]] * (10 - len(lc))
+    extend = [[" ", " ", " ", " ", " ", " ", " "]] * (10 - len(lc))
     lc.extend(extend)
     gc = gspread.service_account(filename='./sacc.json')
     sh = gc.open("Test")
     worksheet = sh.sheet1
-    worksheet.update(f"B{start_num}:G{end_num}", [[lc[0][0], lc[0][1], lc[0][2], lc[0][3], lc[0][4], lc[0][5]],
-                                                  [lc[1][0], lc[1][1], lc[1][2], lc[1][3], lc[1][4], lc[1][5]],
-                                                  [lc[2][0], lc[2][1], lc[2][2], lc[2][3], lc[2][4], lc[2][5]],
-                                                  [lc[3][0], lc[3][1], lc[3][2], lc[3][3], lc[3][4], lc[3][5]],
-                                                  [lc[4][0], lc[4][1], lc[4][2], lc[4][3], lc[4][4], lc[4][5]],
-                                                  [lc[5][0], lc[5][1], lc[5][2], lc[5][3], lc[5][4], lc[5][5]],
-                                                  [lc[6][0], lc[6][1], lc[6][2], lc[6][3], lc[6][4], lc[6][5]],
-                                                  [lc[7][0], lc[7][1], lc[7][2], lc[7][3], lc[7][4], lc[7][5]],
-                                                  [lc[8][0], lc[8][1], lc[8][2], lc[8][3], lc[8][4], lc[8][5]],
-                                                  [lc[9][0], lc[9][1], lc[9][2], lc[9][3], lc[9][4], lc[9][5]]])
+    worksheet.update(f"B{start_num}:H{end_num}", [[lc[0][0], lc[0][1], lc[0][2], lc[0][3], lc[0][4], lc[0][5], lc[0][6]],
+                                                  [lc[1][0], lc[1][1], lc[1][2], lc[1][3], lc[1][4], lc[1][5], lc[1][6]],
+                                                  [lc[2][0], lc[2][1], lc[2][2], lc[2][3], lc[2][4], lc[2][5], lc[2][6]],
+                                                  [lc[3][0], lc[3][1], lc[3][2], lc[3][3], lc[3][4], lc[3][5], lc[3][6]],
+                                                  [lc[4][0], lc[4][1], lc[4][2], lc[4][3], lc[4][4], lc[4][5], lc[4][6]],
+                                                  [lc[5][0], lc[5][1], lc[5][2], lc[5][3], lc[5][4], lc[5][5], lc[5][6]],
+                                                  [lc[6][0], lc[6][1], lc[6][2], lc[6][3], lc[6][4], lc[6][5], lc[6][6]],
+                                                  [lc[7][0], lc[7][1], lc[7][2], lc[7][3], lc[7][4], lc[7][5], lc[7][6]],
+                                                  [lc[8][0], lc[8][1], lc[8][2], lc[8][3], lc[8][4], lc[8][5], lc[8][6]],
+                                                  [lc[9][0], lc[9][1], lc[9][2], lc[9][3], lc[9][4], lc[9][5], lc[9][6]]])
     
 
 def main():
@@ -87,10 +90,8 @@ def main():
     worksheet = sh.sheet1
     worksheet.format("D1", {"backgroundColor": { "red": 1.0, "green": 0.8, "blue": 0.8}})
     worksheet.update("D1", "О б н о в л е н и е ...")
-    l_c = lst_coins(get_json_xypher())[:10]
     l_c_all = lst_coins(get_json_xypher_all())[:10]
-    filling_table(l_c, 4, 13)
-    filling_table(l_c_all, 20, 29)
+    filling_table(l_c_all, 4, 13)
     worksheet.format("D1", {"backgroundColor": { "red": 0.8, "green": 1.0, "blue": 0.8}})
     worksheet.update("D1", f"Обновлено в: {datetime.now().strftime('%H:%M:%S')}")
     print(f"[ + ] {datetime.now().strftime('%d-%m-%Y %H:%M:%S')} {datetime.now() - start}")

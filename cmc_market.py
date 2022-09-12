@@ -1,4 +1,4 @@
-import requests, json
+import requests, json, csv
 
 
 def symbol_coin(symbol):
@@ -10,7 +10,7 @@ def symbol_coin(symbol):
 
 
 def verify_cmc(coin, ex1, ex2):
-    if coin == "EUR":
+    if coin == "EUR" or coin == "LTC3L" or coin == "LINK3S" or coin == "IOTA" or coin == "XRP3S" or coin == "XRP3L" or coin == "ETH3L" or coin == "BCH3L":
         return False
     try:
         headers = {
@@ -55,6 +55,9 @@ def verify_cmc(coin, ex1, ex2):
             return False
     except KeyError:
         # print(coin, symbol_coin(coin))
+        with open("error_coin.csv", "a", encoding="utf-8", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow((coin, symbol_coin(coin)))
         return False
 
 
