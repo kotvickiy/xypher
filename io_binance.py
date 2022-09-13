@@ -37,4 +37,4 @@ def binance_io(coin):
 
 
 if __name__ == '__main__':
-    print(binance_io("xmr"))
+    print(binance_io("GBP"))

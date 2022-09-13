@@ -39,4 +39,4 @@ def kucoin_io(coin):
 
 
 if __name__ == '__main__':
-    print(kucoin_io("MDX"))
+    print(kucoin_io("EGAME"))

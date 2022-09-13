@@ -33,4 +33,4 @@ def verify_network(coin, ex1, ex2):
 
 
 if __name__ == '__main__':
-    print(verify_network("eth", "binance", "huobi"))
+    print(verify_network("EGAME", "huobi", "kucoin"))

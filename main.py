@@ -58,12 +58,16 @@ def lst_coins(val):
                 max_B[3] = "/"
                 max_B[4] = max_B[4].upper()
         spread_coin_exchange = [spread, i["CoinName"], f"{min_A[1]}{min_A[2]}{min_A[3]}{min_A[4]}", f"{min_A[0]}", f"{max_B[1]}{max_B[2]}{max_B[3]}{max_B[4]}", f"{max_B[0]}"]
+        # print(spread_coin_exchange)
+        # print(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0])
         if verify_cmc(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0]):
+            print(spread_coin_exchange)
             vn = verify_network(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0])
+            print("=====================> ", vn)
             if vn:
                 spread_coin_exchange.append(vn)
                 if spread_coin_exchange[0] > 2:
-                    # print(spread_coin_exchange)
+                    print(spread_coin_exchange)
                     msg = str(str(spread_coin_exchange[0]) + ' ' + spread_coin_exchange[1] + '\n'\
                             + spread_coin_exchange[3] + ' ' + spread_coin_exchange[2] + '\n'\
                             + spread_coin_exchange[5] + ' ' + spread_coin_exchange[4] + '\n'\
