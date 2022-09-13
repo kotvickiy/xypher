@@ -62,7 +62,7 @@ def lst_coins(val):
             vn = verify_network(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0])
             if vn:
                 spread_coin_exchange.append(vn)
-                if spread_coin_exchange[0] > 1:
+                if spread_coin_exchange[0] > 2:
                     # print(spread_coin_exchange)
                     msg = str(str(spread_coin_exchange[0]) + ' ' + spread_coin_exchange[1] + '\n'\
                             + spread_coin_exchange[3] + ' ' + spread_coin_exchange[2] + '\n'\
