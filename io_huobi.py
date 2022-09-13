@@ -33,8 +33,9 @@ def huobi_io(coin):
 
     res = json.loads(response.text)
     for i in res["data"][0]["chains"]:
-        lst.append(i["displayName"].lower())
+        if i['depositStatus'] == "allowed" and i['withdrawStatus'] == "allowed":
+            lst.append(i["displayName"].lower())
     return refresh_lst(lst)
 
 if __name__ == "__main__":
-    print(huobi_io("MOVR"))
+    print(huobi_io("MDX"))

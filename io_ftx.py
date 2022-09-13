@@ -30,7 +30,7 @@ def ftx_io(coin):
     res = json.loads(response.text)
 
     for i in res["result"]:
-        if i["id"] == f"{coin.upper()}":
+        if i["id"] == f"{coin.upper()}" and i["canDeposit"] == True and i["canWithdraw"] == True:
             return refresh_lst(i["methods"])
 
 

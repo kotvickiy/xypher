@@ -31,9 +31,10 @@ def binance_io(coin):
 
     res = json.loads(response.text)
     for i in res["data"]:
-        lst.append(i["name"].lower())
+        if i['depositEnable'] == True and i['withdrawEnable'] == True:
+            lst.append(i["name"].lower())
     return refresh_lst(lst)
 
 
 if __name__ == '__main__':
-    print(binance_io("clv"))
+    print(binance_io("xmr"))

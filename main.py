@@ -7,6 +7,7 @@ from datetime import datetime
 from headers_all import get_json_xypher_all
 from cmc_market import verify_cmc
 from network import verify_network
+from config import TOKEN, CHAT_ID
 
 
 
@@ -61,6 +62,14 @@ def lst_coins(val):
             vn = verify_network(spread_coin_exchange[1], spread_coin_exchange[2].replace("https://", "").replace("www.", "").split(".")[0], spread_coin_exchange[4].replace("https://", "").replace("www.", "").split(".")[0])
             if vn:
                 spread_coin_exchange.append(vn)
+                if spread_coin_exchange[0] > 1:
+                    print(spread_coin_exchange)
+                    msg = str(str(spread_coin_exchange[0]) + ' ' + spread_coin_exchange[1] + '\n'\
+                            + spread_coin_exchange[3] + ' ' + spread_coin_exchange[2] + '\n'\
+                            + spread_coin_exchange[5] + ' ' + spread_coin_exchange[4] + '\n'\
+                            + spread_coin_exchange[6] + '\n'
+                    )
+                    requests.get(f'https://api.telegram.org/bot{TOKEN}/sendMessage', params=dict(chat_id=CHAT_ID,text=msg, disable_web_page_preview=True))
                 coins.append(spread_coin_exchange)
     coins.sort(key=lambda x: x[0], reverse=True)
     return coins

@@ -33,8 +33,10 @@ def kucoin_io(coin):
 
     res = json.loads(response.text)
     for i in res["data"]:
-        lst.append(i['chainName'].lower())
+        if i['isDepositEnabled'] == "true" and i['isWithdrawEnabled'] == "true":
+            lst.append(i['chainName'].lower())
     return refresh_lst(lst)
 
+
 if __name__ == '__main__':
-    print(kucoin_io("MOVR"))
+    print(kucoin_io("MDX"))

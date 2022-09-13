@@ -22,6 +22,8 @@ def refresh_lst(lst):
             lst[index] = "wtc"
         elif value == "irisnet":
             lst[index] = "iris"
+        elif value == "monero":
+            lst[index] = "xmr"
     return lst
 
 
