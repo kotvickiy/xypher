@@ -43,9 +43,9 @@ def verify_cmc(coin, ex1, ex2):
         flag = 0
 
         for i in json.loads(response.text)["data"]["marketPairs"]:
-            if ex1 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 1:
+            if ex1 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 10:
                 flag += 1
-            if ex2 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 1:
+            if ex2 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 10:
                 flag += 1
 
         if flag >= 2:
