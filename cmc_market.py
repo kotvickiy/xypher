@@ -43,9 +43,9 @@ def verify_cmc(coin, ex1, ex2):
         flag = 0
 
         for i in json.loads(response.text)["data"]["marketPairs"]:
-            if ex1 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 10:
+            if ex1 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 100:
                 flag += 1
-            if ex2 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 10:
+            if ex2 in i["exchangeName"].lower() and float(i["effectiveLiquidity"]) > 100:
                 flag += 1
 
         if flag >= 2:
@@ -61,6 +61,6 @@ def verify_cmc(coin, ex1, ex2):
             writer.writerow((coin, symbol_coin(coin)))
         return False
 
-verify_cmc("EGAME", "huobi", "kucoin")
+# verify_cmc("EGAME", "huobi", "kucoin")
 # print(verify_cmc("EGAME", "huobi", "kucoin"))
 # [7.55, 'EGAME', 'https://www.huobi.com/en-us/exchange/egame_usdt', '0.000328', 'https://www.kucoin.com/ru/trade/EGAME-USDT', '0.0003548']
