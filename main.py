@@ -63,7 +63,7 @@ def lst_coins(val):
             if vn:
                 spread_coin_exchange.append(vn)
                 if spread_coin_exchange[0] > 1:
-                    print(spread_coin_exchange)
+                    # print(spread_coin_exchange)
                     msg = str(str(spread_coin_exchange[0]) + ' ' + spread_coin_exchange[1] + '\n'\
                             + spread_coin_exchange[3] + ' ' + spread_coin_exchange[2] + '\n'\
                             + spread_coin_exchange[5] + ' ' + spread_coin_exchange[4] + '\n'\
