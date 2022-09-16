@@ -34,9 +34,12 @@ def kucoin_io(coin):
     res = json.loads(response.text)
     for i in res["data"]:
         if i['isDepositEnabled'] == "true" and i['isWithdrawEnabled'] == "true":
-            lst.append(i['chainName'].lower())
+            if i.get('preDepositTipEnabled'):
+                continue
+            else:
+                lst.append(i['chainName'].lower())
     return refresh_lst(lst)
 
 
 if __name__ == '__main__':
-    print(kucoin_io("EGAME"))
+    print(kucoin_io("xmr"))
