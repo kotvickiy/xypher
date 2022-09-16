@@ -35,8 +35,8 @@ def kucoin_io(coin):
     for i in res["data"]:
         if i['isDepositEnabled'] == "true" and i['isWithdrawEnabled'] == "true":
             lst.append(i['chainName'].lower())
+    return refresh_lst(lst)
 
 
 if __name__ == '__main__':
-    print(kucoin_io("titan"))
-    print(kucoin_io("bnx"))
+    print(kucoin_io("xmr"))
