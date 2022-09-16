@@ -34,12 +34,9 @@ def kucoin_io(coin):
     res = json.loads(response.text)
     for i in res["data"]:
         if i['isDepositEnabled'] == "true" and i['isWithdrawEnabled'] == "true":
-            if i.get('preDepositTipEnabled'):
-                continue
-            else:
-                lst.append(i['chainName'].lower())
-    return refresh_lst(lst)
+            lst.append(i['chainName'].lower())
 
 
 if __name__ == '__main__':
-    print(kucoin_io("xmr"))
+    print(kucoin_io("titan"))
+    print(kucoin_io("bnx"))

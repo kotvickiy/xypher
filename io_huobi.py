@@ -38,4 +38,4 @@ def huobi_io(coin):
     return refresh_lst(lst)
 
 if __name__ == "__main__":
-    print(huobi_io("TRX"))
+    print(huobi_io("bnx"))
